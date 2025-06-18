@@ -21,13 +21,13 @@ export default function EntryView() {
   if (!entry) return <p>Loading...</p>;
 
   return (
-    <Container>
-      <Typography variant="h4">{entry.title}</Typography>
+    <Container sx={{ width: '70%'}}>
+      <Typography variant="h4" sx={{ mt: 4, mb: 2}}>{entry.title}</Typography>
       {entry.contentBlocks.map((block, i) => (
         block.type === 'paragraph' ? (
           <Typography key={i} paragraph>{block.value}</Typography>
         ) : (
-          <img key={i} src={block.value} alt="Instruction visual" style={{ maxWidth: '100%' }} />
+          <img key={i} src={block.value} alt="Instruction visual" style={{ width: '600px', objectFit: 'cover', maxWidth: '100%' }} />
         )
       ))}
       <Button variant="contained" color="primary" component={Link} to={`/edit/${entry._id}`}>Edit</Button>
