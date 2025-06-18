@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from '../api/axios';
 import type { ContentBlock } from '../types/entry';
 import { Container, Typography, TextField, Button, Box, MenuItem, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -24,6 +25,11 @@ const removeBlock = (index: number) => {
   setContentBlocks(updated);
 };
 
+const handleSubmit = async () => {
+  const payload = { title, contentBlocks };
+  await axios.post('/entries', payload);
+};
+
   return (
     <Container>
       <Typography variant="h4" gutterBottom>Create Entry</Typography>
@@ -36,7 +42,7 @@ const removeBlock = (index: number) => {
         onChange={(e) => setTitle(e.target.value)}
       />
 
-      <Button variant="contained" disabled={!title}>
+      <Button variant="contained" onSubmit={handleSubmit} disabled={!title}>
         Create Entry
       </Button>
 
