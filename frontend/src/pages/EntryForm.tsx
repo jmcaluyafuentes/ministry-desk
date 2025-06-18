@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { ContentBlock } from '../types/entry';
-import { Container, Typography, TextField, Button, Box, MenuItem } from '@mui/material';
+import { Container, Typography, TextField, Button, Box, MenuItem, IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const defaultBlock: ContentBlock = { type: 'paragraph', value: '' };
 
@@ -16,6 +17,11 @@ export default function EntryForm() {
 
 const addBlock = () => {
   setContentBlocks([...contentBlocks, { ...defaultBlock }]);
+};
+
+const removeBlock = (index: number) => {
+  const updated = contentBlocks.filter((_, i) => i !== index);
+  setContentBlocks(updated);
 };
 
   return (
@@ -52,6 +58,11 @@ const addBlock = () => {
             value={block.value}
             onChange={(e) => handleBlockChange(index, 'value', e.target.value)}
           />
+
+        <IconButton onClick={() => removeBlock(index)} color="error">
+          <DeleteIcon />
+        </IconButton>
+
         </Box>
       ))}
 
