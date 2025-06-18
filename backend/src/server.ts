@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import entryRoutes from './routes/entryRoutes';
 
 dotenv.config();
 
@@ -10,6 +11,8 @@ const PORT = 5000;
 
 app.use(cors());
 app.use(express.json());
+
+app.use('/api/entries', entryRoutes);
 
 mongoose.connect(process.env.MONGO_URI!)
   .then(() => {
