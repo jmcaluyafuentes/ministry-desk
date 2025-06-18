@@ -1,8 +1,9 @@
 import express from "express";
-import { createEntry } from "../controllers/entryController";
+import { getEntries, createEntry } from "../controllers/entryController";
 
 const router = express.Router();
 
+router.get('/', getEntries);
 router.post("/", createEntry);
 
 export default router;
