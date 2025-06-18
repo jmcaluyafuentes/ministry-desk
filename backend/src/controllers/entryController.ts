@@ -13,3 +13,8 @@ export const createEntry = async (req: Request, res: Response) => {
   res.status(201).json(newEntry);
 };
 
+export const updateEntry = async (req: Request, res: Response) => {
+  const entry = await Entry.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  res.json(entry);
+};
+
