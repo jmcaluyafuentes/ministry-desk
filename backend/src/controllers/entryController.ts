@@ -7,6 +7,12 @@ export const getEntries = async (req: Request, res: Response) => {
   res.json(entries);
 };
 
+// Get a single entry
+export const getEntry = async (req: Request, res: Response) => {
+  const entry = await Entry.findById(req.params.id);
+  res.json(entry);
+};
+
 // Create a new entry
 export const createEntry = async (req: Request, res: Response) => {
   const { title, contentBlocks } = req.body;
